@@ -16,3 +16,6 @@ Once setup, you will see a new dashboard in the backoffice content section. Usin
 
 ## Locked Out
 If you ever loose your authenticator app but you have access to the database, simply delete your user account from the U2UserSettings table in your Umbraco database.
+
+## Roadmap
+I plan to add another AppSetting to require two factor authentication. If set to true, any account that doesn't have 2FA configured will inform the user they must contact their administrator to setup two factor authentication. I will add a section for administrators to generate 2FA secret keys (and QR codes) for other users. 
