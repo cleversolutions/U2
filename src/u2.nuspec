@@ -7,6 +7,7 @@
     <owners>Evan Moore</owners>
     <projectUrl>https://github.com/cleversolutions/U2</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
     <description>Two factor authentication for Umbraco 8 using any TOTP compliant authenticator app such as Google Authenticator.</description>
     <releaseNotes><![CDATA[1.0.0 Initial release]]></releaseNotes>
     <copyright>Copyright 2021</copyright>
