@@ -6,3 +6,4 @@
 /packages
 /src/bin
 /src/obj
+*.nupkg
