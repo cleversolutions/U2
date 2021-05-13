@@ -1,4 +1,13 @@
-﻿To enable 2FA 
+﻿  _    _ ___         _    _           _                           ___  ______      
+ | |  | |__ \       | |  | |         | |                         |__ \|  ____/\    
+ | |  | |  ) |      | |  | |_ __ ___ | |__  _ __ __ _  ___ ___      ) | |__ /  \   
+ | |  | | / /       | |  | | '_ ` _ \| '_ \| '__/ _` |/ __/ _ \    / /|  __/ /\ \  
+ | |__| |/ /_       | |__| | | | | | | |_) | | | (_| | (_| (_) |  / /_| | / ____ \ 
+  \____/|____|       \____/|_| |_| |_|_.__/|_|  \__,_|\___\___/  |____|_|/_/    \_\
+                                                                                   
+                                                                                   
+
+To enable 2FA 
 
 1. Set your issuer. This helps users destinguish in their authenticator app what site this is for. Helpful
    if your users use the same username across multiple sites.
