@@ -1,0 +1,4 @@
+This code is based on this solution https://github.com/Dallas-msc/umbraco-2fa-with-google-authenticator/
+which is forked from ng-soft https://github.com/ng-soft/umbraco-2fa-with-google-authenticator
+which is forked from https://github.com/nul800sebastiaan/YubiKey2Factor
+

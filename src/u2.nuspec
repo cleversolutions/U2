@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>U2</id>
+    <version>1.0.0</version>
+    <authors>Evan Moore</authors>
+    <owners>Evan Moore</owners>
+    <projectUrl>https://github.com/cleversolutions/U2</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Two factor authentication for Umbraco 8 using any TOTP compliant authenticator app such as Google Authenticator.</description>
+    <releaseNotes><![CDATA[1.0.0 Initial release]]></releaseNotes>
+    <copyright>Copyright 2021</copyright>
+    <tags>umbraco, umbraco-cms</tags>
+    <dependencies>
+      <dependency id="Otp.NET" version="[1.2.2, 2.0.0)" />
+      <dependency id="UmbracoCms.IdentityExtensions" version="[2.0.0, 3.0.0)" />
+      <dependency id="UmbracoCms.Web" version="[8.1.1, 9.0.0)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\release\u2.dll" target="lib\net472" />
+    <file src="App_Plugins\U2\**\*.*" target="content\App_Plugins\U2" />
+    <file src="Readme.txt" target="Readme.txt" />
+  </files>
+</package>

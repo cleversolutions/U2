@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (UK)" localName="English (UK)" lcid="" culture="en-GB">
+  <creator>
+    <name>The Umbraco community</name>
+    <link>http://mydomain.com</link>
+  </creator>
+  <area alias="content">
+    <key alias="twoFactorAuthentication">Two Factor Authentication</key>
+  </area>
+</language>

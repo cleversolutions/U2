@@ -1,0 +1,17 @@
+﻿<div ng-controller="2FactorAuthentication.LoginController" class="umb-login-container">
+    <div id="twoFactorlogin" ng-cloak="">
+        <div class="form">
+            <h1>One last step</h1>
+
+
+            <form method="POST" name="twoFactorCodeForm" ng-submit="validate(provider, code)" ng-if="step=='code'">
+                <p>Your verification code, please?</p>
+                <div class="control-group">
+                    <input type="text" name="code" autocomplete="one-time-code" inputmode="numeric" pattern="[0-9]*" class="input-xlarge" ng-model="code" ui-keypress="{13:'validate(provider, code)'}" />
+                </div>
+                <div class="text-error ng-binding" ng-if="error2FA !== ''">{{error2FA}}</div>
+                <button type="submit" class="btn">Validate</button>
+            </form>
+        </div>
+    </div>
+</div>
