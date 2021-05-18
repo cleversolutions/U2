@@ -15,6 +15,14 @@ To enable 2FA
 
 2. Enable 2FA by adding the following to ConfigureUmbracoAuthentication in your owin startup class
 
+using Umbraco.Core.Mapping;
+using System;
+using Umbraco.Web.Security;
+using U2.Middleware;
+using Umbraco.Core.Models.Identity;
+using Umbraco.Core.Security;
+...
+
 // To enable 2FA use the two factor sign in cookie and configure the usermanager to use U2BackOfficeUserManager
 app.UseTwoFactorSignInCookie(Umbraco.Core.Constants.Security.BackOfficeTwoFactorAuthenticationType,
     TimeSpan.FromMinutes(20));
