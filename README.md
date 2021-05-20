@@ -20,3 +20,6 @@ If you ever loose your authenticator app but you have access to the database, si
 ## Roadmap
 1. I plan to add another AppSetting to require two factor authentication. If set to true, any account that doesn't have 2FA configured will inform the user they must contact their administrator to setup two factor authentication. I will add a section for administrators to generate 2FA secret keys (and QR codes) for other users.
 2. Umbraco 9 support.
+
+## Packaging
+```nuget pack u2.nuspec -version <version>```
