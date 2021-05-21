@@ -17,9 +17,17 @@ namespace U2.Middleware
     /// </summary>
     public class U2BackOfficeUserStore : BackOfficeUserStore
     {
+        //public U2BackOfficeUserStore(IUserService userService, IMemberTypeService memberService, IExternalLoginService externalLoginService,
+        //    IEntityService entityService, MembershipProviderBase usersMembershipProvider, IGlobalSettings globalSettings, UmbracoMapper umbracoMapper, AppCaches appCaches)
+        //    : base(userService, memberService, entityService, externalLoginService, globalSettings, usersMembershipProvider, umbracoMapper, appCaches)
+        //{ }
+        // This constructor is obsolete, but for now to support older version of Umbraco (pre 8.12) we will ignore the warning
+        // I suspect the constructor will remain in existence until 9 which will require some rework anyway
         public U2BackOfficeUserStore(IUserService userService, IMemberTypeService memberService, IExternalLoginService externalLoginService,
             IEntityService entityService, MembershipProviderBase usersMembershipProvider, IGlobalSettings globalSettings, UmbracoMapper umbracoMapper, AppCaches appCaches)
-            : base(userService, memberService, entityService, externalLoginService, globalSettings, usersMembershipProvider, umbracoMapper, appCaches)
+#pragma warning disable CS0618 // Type or member is obsolete
+            : base(userService, memberService, entityService, externalLoginService, globalSettings, usersMembershipProvider, umbracoMapper)
+#pragma warning restore CS0618 // Type or member is obsolete
         { }
 
         /// <summary>

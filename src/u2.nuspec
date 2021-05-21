@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>U2</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <authors>Evan Moore</authors>
     <owners>Evan Moore</owners>
     <projectUrl>https://github.com/cleversolutions/U2</projectUrl>
@@ -13,9 +13,11 @@
     <copyright>Copyright 2021</copyright>
     <tags>umbraco, umbraco-cms</tags>
     <dependencies>
-      <dependency id="Otp.NET" version="[1.2.2, 2.0.0)" />
-      <dependency id="UmbracoCms.IdentityExtensions" version="[2.0.0, 3.0.0)" />
-      <dependency id="UmbracoCms.Web" version="[8.12.0, 9.0.0)" />
+      <group targetFramework="net472">
+        <dependency id="Otp.NET" version="[1.2.2, 1.99999999)" />
+        <dependency id="UmbracoCms.IdentityExtensions" version="[2.0.0, 2.99999999)" />
+        <dependency id="UmbracoCms.Web" version="[8.1.1, 8.99999999)" />
+      </group>
     </dependencies>
   </metadata>
   <files>
