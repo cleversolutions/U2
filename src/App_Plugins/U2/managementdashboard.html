@@ -4,7 +4,6 @@
             <h3>Multi Factor Authentication</h3>
             <span>You have two step verification <strong>{{enabledText}}</strong>.</span>
             <div ng-show="enabled">
-                This action can be done only by administrator:
                 <button ng-click="disable()">Disable two step verification</button>
                 <div class="alert-danger" ng-if="error2FA !== ''">
                     {{error2FA}}<br />
@@ -15,7 +14,7 @@
                 <p>Multifactor Authentication (MFA) is an effective and important tool to prevent unauthorized access to your account.</p>
                 <p>
                     To setup (MFA), download a TOTP Authenticator app such as Google Authenticator on your mobile device.
-                    Scan the QR code below and enter the code in the app below. Once the code is validated MFA will be enabled your account.  
+                    Scan the QR code below and enter the code in the app below. Once the code is validated MFA will be enabled your account.
                 </p>
                 <div id="qrcode" style="width: 200px"></div>
 
@@ -26,6 +25,18 @@
                 </div>
                 <button ng-click="validateAndSaveTOTPAuth(code, secret)">Validate & Save</button>
             </div>
+
+            <div class="user-list" ng-if="isAdmin && users.length">
+                <hr />
+                <h3>All enabled 2FA method users</h3>
+                <table class="table">
+                    <tr ng-repeat="u in users">
+                        <td>{{u.username}}</td>
+                        <td><button ng-click="disableByAdmin(u.id)">Disable 2FA</button></td>
+                    </tr>
+                </table>
+            </div>
+            <umb-load-indicator ng-show="isLoading"></umb-load-indicator>
         </div>
     </umb-box-content>
 </umb-box>

@@ -4,9 +4,11 @@ using System.Web.Http;
 using U2.Models;
 using U2.Services;
 using Umbraco.Web.WebApi;
+using System.Collections.Generic;
 
 namespace U2.Controllers
 {
+    [IsBackOffice]
     public class U2AuthController : UmbracoAuthorizedApiController
     {
         private readonly U2Service _u2Service;
@@ -47,6 +49,12 @@ namespace U2.Controllers
             return twoFactorAuthInfo;
         }
 
+        [HttpGet]
+        public IEnumerable<int> GetEnabledUserSettings()
+        {
+            return _u2Service.GetEnabledUserSettings().Select(e => e.UserId);
+        }
+
         [HttpPost]
         public bool ValidateAndSaveTOTPAuth(string code, string secret)
         {
@@ -56,13 +64,19 @@ namespace U2.Controllers
 
         [HttpPost]
         public bool Disable()
+        {            
+            var user = Security.CurrentUser;
+            return _u2Service.Disable(user.Id) != 0;                            
+        }
+
+        [HttpPost]
+        public bool DisableByAdmin(int id)
         {
-            var result = 0;
+            var result = 0;            
             var isAdmin = Security.CurrentUser.Groups.Select(x => x.Name == "Administrators").FirstOrDefault();
             if (isAdmin)
-            {
-                var user = Security.CurrentUser;
-                result = _u2Service.Disable(user.Id);
+            {                
+                result = _u2Service.Disable(id);
                 //if more than 0 rows have been deleted, the query ran successfully
             }
             return result != 0;
