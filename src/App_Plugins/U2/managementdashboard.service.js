@@ -1,7 +1,7 @@
 ﻿angular.module("umbraco.services").factory("twoFactorService", function ($http) {
     return {
-        getEnabled: function (userId) {
-            return $http.get("/umbraco/backoffice/api/U2Auth/TwoFactorEnabled/?userId=" + userId);
+        getEnabled: function () {
+            return $http.get("/umbraco/backoffice/api/U2Auth/TwoFactorEnabled/");
         },
         getTOTPAuthenticatorSetupCode: function () {
             return $http.get("/umbraco/backoffice/api/U2Auth/TOTPAuthenticatorSetupCode/");
@@ -12,8 +12,14 @@
         disable: function () {
             return $http.post("/umbraco/backoffice/api/U2Auth/Disable/");
         },
+        disableByAdmin: function (id) {
+            return $http.post("/umbraco/backoffice/api/U2Auth/DisableByAdmin/?id=" + id);
+        },
         get2FAProviders: function () {
             return $http.post("/umbraco/backoffice/api/U2Auth/Get2FAProviders/");
-    }
+        },
+        getEnabledUserSettings: function () {
+            return $http.get("/umbraco/backoffice/api/U2Auth/GetEnabledUserSettings/");
+        }
     };
 });

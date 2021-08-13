@@ -95,5 +95,13 @@ namespace U2.Services
                 return result;
             }
         }
+
+        public IEnumerable<U2UserSettings> GetEnabledUserSettings()
+        {
+            using (var scope = scopeProvider.CreateScope(autoComplete: true))
+            {
+                return scope.Database.Query<U2UserSettings>("WHERE [IsAuthenticatorEnabled] = 1");                
+            }
+        }
     }
 }
