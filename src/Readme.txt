@@ -6,6 +6,8 @@
   \____/|____|       \____/|_| |_| |_|_.__/|_|  \__,_|\___\___/  |____|_|/_/    \_\
                                                                                    
                                                                                    
+*Upgrade Warning*
+If you are upgrading please increment the clientDependency version of in config/ClientDependency.config
 
 To enable 2FA 
 
