@@ -18,7 +18,7 @@
                 </p>
                 <div id="qrcode" style="width: 200px"></div>
 
-                <input type="text" name="code" ng-model="code" ui-keypress="{13:'validateAndSaveTOTPAuth(code, secret)'}" />
+                <input no-dirty-check type="text" name="code" ng-model="code" ui-keypress="{13:'validateAndSaveTOTPAuth(code, secret)'}" />
                 <br />
                 <div ng-if="error2FA !== ''">
                     {{error2FA}}<br />
