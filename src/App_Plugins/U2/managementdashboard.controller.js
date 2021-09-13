@@ -32,10 +32,29 @@
         var getEnabledUserSettings = function () {
             $scope.isLoading = true;
             twoFactorService.getEnabledUserSettings().then(function (response) {
-                usersResource.getUsers(response.data).then(function (userData) {
-                    $scope.users = userData;
-                    $scope.isLoading = false;
-                });
+                console.log('Got Users:', response.data);
+                // ensure we got something
+                if (!response.data) {
+                    return;
+                }
+                if (typeof usersResource.getUsers === 'function') {
+                    // use getUsers if it is supported (results in a single call)
+                    usersResource.getUsers(response.data).then(function (userData) {
+                        $scope.users = userData;
+                        $scope.isLoading = false;
+                    });
+                } else {
+                    // call getUser for each user, wait for all calls to complete and load into scope
+                    let responses = [];
+                    response.data.forEach(id => {
+                        responses.push(usersResource.getUser(id));
+                    });
+                    Promise.all(responses).then(users => {
+                        $scope.users = users;
+                        $scope.isLoading = false;
+                    });
+                }
+
             });
         };
 
