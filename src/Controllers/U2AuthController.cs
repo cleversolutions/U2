@@ -5,6 +5,7 @@ using U2.Models;
 using U2.Services;
 using Umbraco.Web.WebApi;
 using System.Collections.Generic;
+using System.Web;
 
 namespace U2.Controllers
 {
@@ -35,10 +36,10 @@ namespace U2.Controllers
             var user = Security.CurrentUser;
             byte[] secretKey = KeyGeneration.GenerateRandomKey(20);
             string secret = Base32Encoding.ToString(secretKey);
-            string userName = user.Username;
+            string userName = HttpUtility.UrlEncode(user.Username);
 
-            string issuer = System.Configuration.ConfigurationManager.AppSettings["TOTPIssuer"] ?? "U2";
-            string qrCodeUri = $"otpauth://totp/{issuer}:{userName}?secret={secret}&issuer={issuer}" ;
+            string issuer = HttpUtility.UrlEncode(System.Configuration.ConfigurationManager.AppSettings["TOTPIssuer"] ?? "U2");
+            string qrCodeUri = $"otpauth://totp/{issuer}:{userName}?secret={secret}&issuer={issuer}&digits=6" ;
 
             var twoFactorAuthInfo = new U2MFASetup();
             twoFactorAuthInfo.Email = user.Email;

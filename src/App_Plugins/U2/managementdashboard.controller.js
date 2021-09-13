@@ -15,21 +15,25 @@
         $scope.isLoading = false;
 
 
-        twoFactorService.getTOTPAuthenticatorSetupCode().then(function (response) {
-            $scope.qrCodeUri = response.data.QrCodeUri;
-            $scope.secret = response.data.Secret;
-            $scope.email = response.data.Email;
-            $scope.applicationName = response.data.ApplicationName;
+        var setupSignup = function () {
+            twoFactorService.getTOTPAuthenticatorSetupCode().then(function (response) {
+                $scope.qrCodeUri = response.data.QrCodeUri;
+                $scope.secret = response.data.Secret;
+                $scope.email = response.data.Email;
+                $scope.applicationName = response.data.ApplicationName;
 
-            var typeNumber = 0;
-            var errorCorrectionLevel = 'H';
-            var qr = qrcode(typeNumber, errorCorrectionLevel);
-            qr.addData(response.data.QrCodeUri);
-            qr.make();
-            document.getElementById('qrcode').innerHTML = qr.createSvgTag(5);
-        });
+                var typeNumber = 0;
+                var errorCorrectionLevel = 'H';
+                var qr = qrcode(typeNumber, errorCorrectionLevel);
+                qr.addData(response.data.QrCodeUri);
+                qr.make();
+                document.getElementById('qrcode').innerHTML = qr.createSvgTag(5);
+            });
+        }
+        setupSignup();
 
         var getEnabledUserSettings = function () {
+            console.log('refreshing enabled user list');
             $scope.isLoading = true;
             twoFactorService.getEnabledUserSettings().then(function (response) {
                 console.log('Got Users:', response.data);
@@ -82,6 +86,12 @@
                         $scope.enabledText = "enabled";
                         $scope.enabled = true;
                         $scope.TOTPAuthEnabled = true;
+                        $scope.code = '';
+
+                        // refresh the list of users with MFA enabled
+                        if ($scope.isAdmin) {
+                            getEnabledUserSettings();
+                        }
                     } else {
                         $scope.error2FA = "Invalid code entered.";
                     }
@@ -101,13 +111,13 @@
                         $scope.enabled = false;
                         $scope.TOTPAuthEnabled = false;
 
-                        twoFactorService.getTOTPAuthenticatorSetupCode().then(function (response) {
+                        // Setup the TOTP Setup again
+                        setupSignup()
 
-                            $scope.qrCodeUri = response.data.QrCodeUri;
-                            $scope.secret = response.data.Secret;
-                            $scope.email = response.data.Email;
-                            $scope.applicationName = response.data.ApplicationName;
-                        });
+                        // refresh the list of users with MFA enabled
+                        if ($scope.isAdmin) {
+                            getEnabledUserSettings();
+                        }
                     } else {
                         $scope.error2FA = "You don't have permission to do this action, please contact your administrator.";
                     }
